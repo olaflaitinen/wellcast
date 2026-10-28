@@ -25,7 +25,7 @@ Examples
 '0.1.0'
 """
 
-from wellcast import clean, io, units
+from wellcast import clean, datasets, io, units
 from wellcast.__about__ import (
     __author__,
     __copyright__,
@@ -34,6 +34,7 @@ from wellcast.__about__ import (
     __version__,
 )
 from wellcast.clean import qc_report
+from wellcast.datasets import make_synthetic_field
 from wellcast.exceptions import (
     DataValidationError,
     FitError,
@@ -57,7 +58,9 @@ __all__ = [
     "__version__",
     "clean",
     "convert",
+    "datasets",
     "io",
+    "make_synthetic_field",
     "qc_report",
     "read_production",
     "units",
