@@ -182,5 +182,5 @@ files = ["src/wellcast"]
 warn_unreachable = true
 
 [[tool.mypy.overrides]]
-module = ["scipy.*", "lasio.*", "lightgbm.*", "shap.*", "sklearn.*", "joblib.*", "plotly.*", "streamlit.*"]
+module = ["lasio.*", "lightgbm.*", "shap.*", "sklearn.*", "joblib.*", "plotly.*", "streamlit.*"]
 ignore_missing_imports = true
