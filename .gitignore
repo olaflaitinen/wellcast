@@ -30,8 +30,9 @@ htmlcov/
 # Notebooks
 .ipynb_checkpoints/
 
-# Documentation build output
+# Documentation build output and notebook execution cache
 site/
+.cache/
 
 # Streamlit local secrets
 app/.streamlit/secrets.toml

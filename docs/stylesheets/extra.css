@@ -1,0 +1,16 @@
+/* Copyright (c) 2026 Olaf Yunus Laitinen Imanov. SPDX-License-Identifier: MPL-2.0 */
+/* Brand colors matching the wellcast chart palette. */
+:root,
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #2a78d6;
+  --md-primary-fg-color--light: #5598e7;
+  --md-primary-fg-color--dark: #1c5cab;
+  --md-accent-fg-color: #1c5cab;
+}
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #3987e5;
+  --md-primary-fg-color--light: #6da7ec;
+  --md-primary-fg-color--dark: #256abf;
+  --md-accent-fg-color: #86b6ef;
+}
+.md-header__button.md-logo img { height: 1.6rem; }

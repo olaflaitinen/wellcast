@@ -1,0 +1,3 @@
+# wellcast.cli
+
+::: wellcast.cli

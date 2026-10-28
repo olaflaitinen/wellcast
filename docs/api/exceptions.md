@@ -1,0 +1,3 @@
+# wellcast.exceptions
+
+::: wellcast.exceptions

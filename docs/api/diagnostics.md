@@ -1,0 +1,3 @@
+# wellcast.diagnostics
+
+::: wellcast.diagnostics
