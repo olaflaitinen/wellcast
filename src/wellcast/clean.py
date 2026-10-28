@@ -49,6 +49,11 @@ __all__ = [
 # estimator of the standard deviation for normally distributed data.
 _MAD_TO_SIGMA = 1.4826
 
+# Setpoints and uptime are legitimately constant for long periods (a choke left
+# at 32/64, 24 producing hours every day), so runs of identical values in these
+# columns are not frozen gauges and are not counted as flatlines.
+_FLATLINE_EXEMPT = frozenset({"on_stream_hours", "choke"})
+
 # Physically admissible ranges [low, high] in canonical units. Values outside
 # are counted as "impossible" by qc_report. Temperatures are in degF, so the
 # lower bound is absolute zero (-459.67 degF).
@@ -541,7 +546,9 @@ def qc_report(
     pandas.DataFrame
         Tidy table with one row per (well, column) and the columns ``well``,
         ``column``, ``n``, ``missing``, ``missing_pct``, ``negative``,
-        ``flatline`` and ``impossible``. ``impossible`` counts values outside
+        ``flatline`` and ``impossible``. ``flatline`` is NaN for setpoint
+        columns (``choke``, ``on_stream_hours``), which are constant by
+        design. ``impossible`` counts values outside
         :data:`IMPOSSIBLE_RANGES` (for example a negative pressure or a water
         cut outside [0, 1]); it is NaN for columns without a rule.
 
@@ -574,7 +581,9 @@ def qc_report(
                     "missing": missing,
                     "missing_pct": 100.0 * missing / n if n else np.nan,
                     "negative": int((s < 0).sum()),
-                    "flatline": _flatline_count(s, flatline_min_run),
+                    "flatline": np.nan
+                    if column in _FLATLINE_EXEMPT
+                    else _flatline_count(s, flatline_min_run),
                     "impossible": impossible,
                 }
             )

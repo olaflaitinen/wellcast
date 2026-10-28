@@ -203,8 +203,8 @@ def test_qc_report_counts() -> None:
     assert report.loc["whp", "flatline"] == 6
     assert report.loc["whp", "impossible"] == 1
     assert report.loc["water_cut", "impossible"] == 2
-    # Zero runs are shut-ins, not frozen gauges.
-    assert report.loc["on_stream_hours", "flatline"] == 0
+    # Uptime is a setpoint, constant by design: no flatline count.
+    assert np.isnan(report.loc["on_stream_hours", "flatline"])
     assert report.loc["on_stream_hours", "impossible"] == 1
     assert "tag" not in report.index
 
@@ -212,6 +212,9 @@ def test_qc_report_counts() -> None:
 def test_flatline_runs_break_at_zero_and_gap() -> None:
     df = pd.DataFrame({"whp": [5.0, 5.0, 0.0, 5.0, 5.0, 5.0, np.nan, 5.0, 5.0]})
     assert qc_report(df, flatline_min_run=3)["flatline"].iloc[0] == 3
+    # Zero runs (shut-ins) never count as flatlines.
+    zeros = pd.DataFrame({"whp": [0.0] * 10})
+    assert qc_report(zeros)["flatline"].iloc[0] == 0
 
 
 def test_qc_report_custom_hours_and_no_rule() -> None:
