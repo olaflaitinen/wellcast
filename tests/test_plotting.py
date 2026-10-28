@@ -47,6 +47,14 @@ def test_theme_registration() -> None:
     assert list(template.layout.colorway) == list(pl.SERIES_COLORS)
 
 
+def test_surfaces_are_set_on_the_figure() -> None:
+    # Renderers such as Streamlit override template-only backgrounds.
+    fig = pl.ipr_plot(ipr_curve("vogel", 2500.0, qmax=1000.0))
+    assert fig.layout.plot_bgcolor == fig.layout.paper_bgcolor == "#fcfcfb"
+    history = pl.production_history(make_synthetic_field(n_wells=1, years=1).production)
+    assert history.layout.plot_bgcolor == "#fcfcfb"
+
+
 def test_fluid_identity_has_color_and_dash() -> None:
     dashes = {
         style["dash"]

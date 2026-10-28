@@ -158,10 +158,19 @@ def register_theme() -> str:
     return "wellcast"
 
 
+def _apply_theme(fig: Any) -> Any:
+    # Surfaces are also set on the figure itself: some renderers (Streamlit
+    # among them) replace template-only background colors with their own.
+    fig.update_layout(
+        template=register_theme(), paper_bgcolor=_SURFACE, plot_bgcolor=_SURFACE
+    )
+    return fig
+
+
 def _figure(**layout: Any) -> Any:
     go = _go()
-    fig = go.Figure()
-    fig.update_layout(template=register_theme(), **layout)
+    fig = _apply_theme(go.Figure())
+    fig.update_layout(**layout)
     return fig
 
 
@@ -255,8 +264,8 @@ def production_history(
                 row=row,
                 col=1,
             )
+    _apply_theme(fig)
     fig.update_layout(
-        template=register_theme(),
         title=f"Production history {name}".strip(),
         height=260 * max(len(panels), 1) + 120,
     )
