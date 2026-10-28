@@ -22,7 +22,7 @@ quantity::
     base = value * scale + offset
 
 Only temperature units use a non-zero offset. Conversions between units of
-different quantities raise :class:`~wellcast.exceptions.UnitError`.
+different quantities raise `wellcast.exceptions.UnitError`.
 
 Standard-condition volumes (``stb``, ``scf``, ``sm3``) are treated as plain
 volumes. The small difference between oilfield standard conditions (60 degF,

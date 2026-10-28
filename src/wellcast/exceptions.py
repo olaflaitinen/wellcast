@@ -15,7 +15,7 @@
 
 """Exception classes raised by wellcast.
 
-Every exception derives from :class:`WellcastError`, so callers can catch all
+Every exception derives from `WellcastError`, so callers can catch all
 library errors with a single ``except`` clause. The concrete classes also
 derive from the closest built-in exception (``ValueError`` or
 ``RuntimeError``) so existing code that catches those keeps working.

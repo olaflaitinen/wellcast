@@ -20,7 +20,7 @@ unreliable to measure, such as bottomhole pressure after a gauge failure or
 the rate of a well between well tests, from measurements that are always
 available (wellhead pressure and temperature, choke opening, and so on).
 
-:class:`Predictor` wraps a scikit-learn :class:`~sklearn.pipeline.Pipeline`
+`Predictor` wraps a scikit-learn `sklearn.pipeline.Pipeline`
 (LightGBM by default), validates it with time-ordered or leave-one-well-out
 splits, reports metrics per well, provides quantile prediction intervals and
 explains predictions with SHAP.
@@ -78,10 +78,10 @@ def regression_metrics(
 
     Notes
     -----
-    .. math::
-
-        \mathrm{MAPE} = \frac{100}{n} \sum \frac{|y_i - \hat y_i|}{|y_i|},
-        \quad R^2 = 1 - \frac{\sum (y_i - \hat y_i)^2}{\sum (y_i - \bar y)^2}
+    $$
+    \mathrm{MAPE} = \frac{100}{n} \sum \frac{|y_i - \hat y_i|}{|y_i|},
+    \quad R^2 = 1 - \frac{\sum (y_i - \hat y_i)^2}{\sum (y_i - \bar y)^2}
+    $$
 
     Examples
     --------
@@ -120,7 +120,7 @@ def regression_metrics(
 def metrics_by_well(
     y_true: pd.Series, y_pred: pd.Series, wells: pd.Series | None
 ) -> pd.DataFrame:
-    """Compute :func:`regression_metrics` for each well and for all wells.
+    """Compute `regression_metrics` for each well and for all wells.
 
     Parameters
     ----------
@@ -251,7 +251,7 @@ class Predictor:
     features : sequence of str, optional
         Feature columns. By default every numeric column except the target,
         the well column and the same-row features derived from the target
-        (see :func:`wellcast.features.features_using`), which would leak it.
+        (see `wellcast.features.features_using`), which would leak it.
     estimator : {"lightgbm", "hist_gradient_boosting", "random_forest", "ridge"}
         Point model. Default ``"lightgbm"``.
     quantiles : tuple of float or None, optional
@@ -466,7 +466,7 @@ class Predictor:
         Returns
         -------
         pandas.DataFrame
-            See :func:`metrics_by_well`.
+            See `metrics_by_well`.
 
         Raises
         ------
@@ -525,7 +525,7 @@ class Predictor:
             ``"timeseries"``).
         method : {"timeseries", "lowo"}, optional
             ``"timeseries"``: expanding-window splits on calendar dates
-            (:class:`sklearn.model_selection.TimeSeriesSplit`), testing how the
+            (`sklearn.model_selection.TimeSeriesSplit`), testing how the
             model extrapolates in time. ``"lowo"``: leave one well out, testing
             how it transfers to an unseen well. Default ``"timeseries"``.
         n_splits : int, optional
@@ -687,7 +687,7 @@ class Predictor:
 
     @classmethod
     def load(cls, path: str | PathLike[str]) -> Predictor:
-        """Load a predictor saved with :meth:`save`.
+        """Load a predictor saved with `save`.
 
         Joblib files are pickles: load only files from a trusted source, since
         unpickling can execute arbitrary code.
@@ -695,7 +695,7 @@ class Predictor:
         Parameters
         ----------
         path : str or path-like
-            File written by :meth:`save`.
+            File written by `save`.
 
         Returns
         -------

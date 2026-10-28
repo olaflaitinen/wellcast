@@ -15,13 +15,13 @@
 
 """Interactive charts for production engineering, built on plotly.
 
-Every helper returns a :class:`plotly.graph_objects.Figure` styled with the
+Every helper returns a `plotly.graph_objects.Figure` styled with the
 ``"wellcast"`` template:
 
 * Series colors follow the entity, never its rank. Fluids keep fixed colors
   and dash patterns everywhere (oil green solid, gas red dashed, water blue
   dotted), so identity never relies on color alone.
-* Categorical series take colors from :data:`SERIES_COLORS` in fixed order;
+* Categorical series take colors from `SERIES_COLORS` in fixed order;
   scatter-type charts color at most three wells and show the rest in one
   neutral color with the well name on hover.
 * Quantities with different units go into separate stacked panels sharing
@@ -436,7 +436,7 @@ def ipr_plot(
     Parameters
     ----------
     curves : pandas.DataFrame or mapping of str to DataFrame
-        Output of :func:`wellcast.ipr.ipr_curve`, or several keyed by label.
+        Output of `wellcast.ipr.ipr_curve`, or several keyed by label.
     operating_point : tuple of float, optional
         ``(rate, pwf)`` of a measured test, drawn as a marker.
     title : str, optional
@@ -583,7 +583,7 @@ def prediction_interval_plot(
     actual : pandas.Series
         Observed values, indexed like ``interval`` (typically by date).
     interval : pandas.DataFrame
-        Output of :meth:`wellcast.ml.Predictor.predict_interval`, with
+        Output of `wellcast.ml.Predictor.predict_interval`, with
         columns ``lower``, ``prediction`` and ``upper``.
     title : str, optional
         Figure title.
@@ -658,7 +658,7 @@ def chan_plot(chan: pd.DataFrame, well: str | None = None) -> Any:
     Parameters
     ----------
     chan : pandas.DataFrame
-        Output of :func:`wellcast.diagnostics.chan_plot_data`.
+        Output of `wellcast.diagnostics.chan_plot_data`.
     well : str, optional
         Well to show. Default: the first well.
 
@@ -699,9 +699,9 @@ def hall_plot(
     Parameters
     ----------
     hall : pandas.DataFrame
-        Output of :func:`wellcast.diagnostics.hall_plot_data`.
+        Output of `wellcast.diagnostics.hall_plot_data`.
     change : pandas.Series, optional
-        Output of :func:`wellcast.diagnostics.hall_slope_change`; the
+        Output of `wellcast.diagnostics.hall_slope_change`; the
         breakpoint is marked and both slopes are labelled.
     title : str, optional
         Figure title.
@@ -755,7 +755,7 @@ def anomaly_overlay(
     df : pandas.DataFrame
         Production table with a ``DatetimeIndex``.
     anomalies : pandas.DataFrame
-        Output of :func:`wellcast.diagnostics.detect_anomalies`.
+        Output of `wellcast.diagnostics.detect_anomalies`.
     column : str
         Signal to draw.
     well : str, optional

@@ -105,8 +105,8 @@ def chan_plot_data(
 
     Notes
     -----
-    :math:`\mathrm{WOR} = q_w / q_o` and
-    :math:`\mathrm{WOR}' = d\,\mathrm{WOR} / dt`. Chan, K. S. (1995), "Water
+    $\mathrm{WOR} = q_w / q_o$ and
+    $\mathrm{WOR}' = d\,\mathrm{WOR} / dt$. Chan, K. S. (1995), "Water
     control diagnostic plots", SPE-30775-MS.
 
     Examples
@@ -174,20 +174,20 @@ def classify_water_mechanism(
 ) -> pd.DataFrame:
     r"""Classify excess water production from Chan plot data.
 
-    After breakthrough, the log-log slope of :math:`\mathrm{WOR}'` against
+    After breakthrough, the log-log slope of $\mathrm{WOR}'$ against
     time separates the mechanisms (Chan, 1995):
 
     * **channeling** (high-permeability layer or near-wellbore channel):
-      :math:`\mathrm{WOR}'` keeps increasing, slope > ``slope_threshold``;
+      $\mathrm{WOR}'$ keeps increasing, slope > ``slope_threshold``;
     * **coning** (bottom water drawn up to the perforations):
-      :math:`\mathrm{WOR}'` decreases after the cone builds, slope
+      $\mathrm{WOR}'$ decreases after the cone builds, slope
       < ``-slope_threshold``;
     * otherwise **normal displacement**.
 
     Parameters
     ----------
     chan : pandas.DataFrame
-        Output of :func:`chan_plot_data`.
+        Output of `chan_plot_data`.
     slope_threshold : float, optional
         Minimum absolute log-log slope treated as a trend. Default 0.3.
     min_points : int, optional
@@ -279,12 +279,12 @@ def hall_plot_data(
 
     Notes
     -----
-    .. math::
+    $$
+    \mathrm{Hall} = \int_0^t (p_{wf} - \bar{p}_r)\,dt
+    \quad \text{vs.} \quad W_i = \int_0^t i\,dt
+    $$
 
-        \mathrm{Hall} = \int_0^t (p_{wf} - \bar{p}_r)\,dt
-        \quad \text{vs.} \quad W_i = \int_0^t i\,dt
-
-    The slope equals :math:`1/I` (inverse injectivity index) for steady
+    The slope equals $1/I$ (inverse injectivity index) for steady
     radial flow; an increasing slope indicates plugging or rising skin, a
     decreasing slope fracturing or stimulation. Hall, H. N. (1963), "How to
     analyze waterflood injection well performance", World Oil, October,
@@ -327,7 +327,7 @@ def hall_slope_change(hall: pd.DataFrame, *, min_segment: int = 30) -> pd.Series
     Parameters
     ----------
     hall : pandas.DataFrame
-        Output of :func:`hall_plot_data`.
+        Output of `hall_plot_data`.
     min_segment : int, optional
         Minimum points on each side of the breakpoint. Default 30.
 
@@ -441,20 +441,22 @@ def havlena_odeh(
 
     Notes
     -----
-    With :math:`R_p = G_p / N_p`:
+    With $R_p = G_p / N_p$:
 
-    .. math::
+    $$
+    \begin{aligned}
+    F &= N_p [B_o + (R_p - R_s) B_g] + W_p B_w - W_{inj} B_w \\
+    E_o &= (B_o - B_{oi}) + (R_{si} - R_s) B_g \\
+    E_g &= B_{oi} (B_g / B_{gi} - 1) \\
+    E_{fw} &= (1 + m) B_{oi} \frac{c_w S_{wi} + c_f}{1 - S_{wi}} \Delta p \\
+    F &= N (E_o + m E_g + E_{fw}) + W_e
+    \end{aligned}
+    $$
 
-        F &= N_p [B_o + (R_p - R_s) B_g] + W_p B_w - W_{inj} B_w \\
-        E_o &= (B_o - B_{oi}) + (R_{si} - R_s) B_g \\
-        E_g &= B_{oi} (B_g / B_{gi} - 1) \\
-        E_{fw} &= (1 + m) B_{oi} \frac{c_w S_{wi} + c_f}{1 - S_{wi}} \Delta p \\
-        F &= N (E_o + m E_g + E_{fw}) + W_e
-
-    Without aquifer influx :math:`W_e`, :math:`F` against
-    :math:`E_t` is a straight line through the origin with slope :math:`N`
-    (see :func:`fit_ooip`) and :math:`F/E_t` is constant. Since
-    :math:`F/E_t = N + W_e/E_t`, influx puts the points above :math:`N` and
+    Without aquifer influx $W_e$, $F$ against
+    $E_t$ is a straight line through the origin with slope $N$
+    (see `fit_ooip`) and $F/E_t$ is constant. Since
+    $F/E_t = N + W_e/E_t$, influx puts the points above $N$ and
     makes the ratio vary with time, which signals aquifer support (or a
     wrong drive mechanism). Havlena, D. and Odeh, A. S. (1963), "The material
     balance as an equation of a straight line", JPT 15(8), 896-900,
@@ -498,7 +500,7 @@ def fit_ooip(mb: pd.DataFrame) -> pd.Series:
     Parameters
     ----------
     mb : pandas.DataFrame
-        Output of :func:`havlena_odeh`.
+        Output of `havlena_odeh`.
 
     Returns
     -------
@@ -598,7 +600,7 @@ def detect_anomalies(
 
     Rules (physically motivated, always explainable):
 
-    * ``impossible_<col>``: value outside :data:`wellcast.clean.IMPOSSIBLE_RANGES`;
+    * ``impossible_<col>``: value outside `wellcast.clean.IMPOSSIBLE_RANGES`;
     * ``dropout_<col>``: pressure exactly zero while the well is on stream;
     * ``flatline_<col>``: at least ``flat_run`` identical non-zero pressure
       readings while flowing (frozen gauge);
@@ -651,7 +653,7 @@ def detect_anomalies(
     Slow gauge drift (a few psi per day) is hidden in day-to-day noise and is
     not reliably found by either detector. Monitor it instead through the
     residual between the measured value and a virtual flow meter prediction
-    from :class:`wellcast.ml.Predictor` trained on a trusted period.
+    from `wellcast.ml.Predictor` trained on a trusted period.
 
     Examples
     --------

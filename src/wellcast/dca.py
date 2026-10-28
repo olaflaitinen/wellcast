@@ -22,13 +22,13 @@ in reserves reporting.
 
 The three Arps (1945) models are
 
-.. math::
-
-    q(t) = \begin{cases}
-    q_i e^{-D_i t} & b = 0 \ \text{(exponential)} \\
-    q_i (1 + b D_i t)^{-1/b} & 0 < b < 1 \ \text{(hyperbolic)} \\
-    q_i / (1 + D_i t) & b = 1 \ \text{(harmonic)}
-    \end{cases}
+$$
+q(t) = \begin{cases}
+q_i e^{-D_i t} & b = 0 \ \text{(exponential)} \\
+q_i (1 + b D_i t)^{-1/b} & 0 < b < 1 \ \text{(hyperbolic)} \\
+q_i / (1 + D_i t) & b = 1 \ \text{(harmonic)}
+\end{cases}
+$$
 
 Arps, J. J. (1945), "Analysis of decline curves", Transactions of the AIME
 160(1), 228-247, SPE-945228-G.
@@ -101,7 +101,7 @@ def arps_rate(t: npt.ArrayLike, qi: float, di: float, b: float) -> FloatOrArray:
 
     Notes
     -----
-    See the module docstring for the equations; :math:`D_i` is converted to
+    See the module docstring for the equations; $D_i$ is converted to
     1/day as ``di / 365.25``.
 
     Examples
@@ -139,15 +139,15 @@ def arps_cumulative(t: npt.ArrayLike, qi: float, di: float, b: float) -> FloatOr
 
     Notes
     -----
-    With :math:`D = D_i / 365.25` (1/day):
+    With $D = D_i / 365.25$ (1/day):
 
-    .. math::
-
-        N_p(t) = \begin{cases}
-        \frac{q_i}{D}\left(1 - e^{-Dt}\right) & b = 0 \\
-        \frac{q_i}{(1-b) D}\left[1 - (1 + bDt)^{(b-1)/b}\right] & b \ne 0, 1 \\
-        \frac{q_i}{D}\ln(1 + Dt) & b = 1
-        \end{cases}
+    $$
+    N_p(t) = \begin{cases}
+    \frac{q_i}{D}\left(1 - e^{-Dt}\right) & b = 0 \\
+    \frac{q_i}{(1-b) D}\left[1 - (1 + bDt)^{(b-1)/b}\right] & b \ne 0, 1 \\
+    \frac{q_i}{D}\ln(1 + Dt) & b = 1
+    \end{cases}
+    $$
 
     Examples
     --------
@@ -187,8 +187,8 @@ def arps_time_to_rate(q: npt.ArrayLike, qi: float, di: float, b: float) -> Float
 
     Notes
     -----
-    :math:`t = \ln(q_i/q)/D` for :math:`b = 0`, otherwise
-    :math:`t = [(q_i/q)^b - 1]/(bD)`.
+    $t = \ln(q_i/q)/D$ for $b = 0$, otherwise
+    $t = [(q_i/q)^b - 1]/(bD)$.
 
     Examples
     --------
@@ -290,7 +290,7 @@ class DeclineModel:
         Start the fit at the peak of the 7-sample rolling median rate, so the
         ramp-up period is ignored. Default True.
     loss : str, optional
-        Loss passed to :func:`scipy.optimize.least_squares`. The default
+        Loss passed to `scipy.optimize.least_squares`. The default
         ``"soft_l1"`` (scale 0.1 in log-rate, about 10 percent) limits the
         influence of rate spikes; use ``"linear"`` for ordinary least squares.
 
@@ -317,7 +317,7 @@ class DeclineModel:
     Notes
     -----
     Zero, negative and missing rates (shut-ins and gaps) are excluded before
-    fitting. Fitting minimizes residuals of :math:`\ln q`, which treats rate
+    fitting. Fitting minimizes residuals of $\ln q$, which treats rate
     errors as multiplicative.
 
     Examples
@@ -693,8 +693,8 @@ class DeclineModel:
         Returns
         -------
         DeclineModel
-            ``self``, with samples stored for :meth:`predict_interval` and
-            :meth:`eur_quantiles`.
+            ``self``, with samples stored for `predict_interval` and
+            `eur_quantiles`.
 
         Raises
         ------
@@ -742,7 +742,7 @@ class DeclineModel:
         Raises
         ------
         FitError
-            If :meth:`bootstrap` has not been called.
+            If `bootstrap` has not been called.
         """
         samples = self._require_samples()
         days = np.atleast_1d(self._to_days(t))
@@ -774,7 +774,7 @@ class DeclineModel:
         Raises
         ------
         FitError
-            If :meth:`bootstrap` has not been called.
+            If `bootstrap` has not been called.
         """
         samples = self._require_samples()
         values = []
@@ -904,18 +904,18 @@ def fit_many(
     rate_column : str, optional
         Rate column to fit. Default ``"oil_rate"``.
     model : str, optional
-        Passed to :class:`DeclineModel`. Default ``"auto"``.
+        Passed to `DeclineModel`. Default ``"auto"``.
     econ_limit : float, optional
         Economic limit for EUR and remaining reserves.
     **kwargs
-        Other :class:`DeclineModel` options.
+        Other `DeclineModel` options.
 
     Returns
     -------
     pandas.DataFrame
         One row per well (index ``by``) with the columns of
-        :meth:`DeclineModel.summary` and ``status`` (``"ok"`` or the error).
-        Rebuild a model with :meth:`DeclineModel.from_params`.
+        `DeclineModel.summary` and ``status`` (``"ok"`` or the error).
+        Rebuild a model with `DeclineModel.from_params`.
 
     Raises
     ------

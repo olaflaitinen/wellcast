@@ -22,12 +22,12 @@ return a ``float``.
 
 Each correlation was fitted to a finite laboratory data set. Inputs outside
 the published range are still evaluated, but a
-:class:`~wellcast._validation.RangeWarning` is issued.
+`wellcast._validation.RangeWarning` is issued.
 
 Notes
 -----
 Oil specific gravity and API gravity are related by
-:math:`\gamma_o = 141.5 / (131.5 + \mathrm{API})`.
+$\gamma_o = 141.5 / (131.5 + \mathrm{API})$.
 """
 
 from __future__ import annotations
@@ -139,7 +139,7 @@ def api_to_specific_gravity(api: npt.ArrayLike) -> FloatOrArray:
 
     Notes
     -----
-    :math:`\gamma_o = 141.5 / (131.5 + \mathrm{API})`.
+    $\gamma_o = 141.5 / (131.5 + \mathrm{API})$.
 
     Examples
     --------
@@ -213,10 +213,10 @@ def bubble_point_standing(
 
     Notes
     -----
-    .. math::
-
-        p_b = 18.2 \left[ (R_s / \gamma_g)^{0.83} \, 10^{a} - 1.4 \right],
-        \quad a = 0.00091\,T - 0.0125\,\mathrm{API}
+    $$
+    p_b = 18.2 \left[ (R_s / \gamma_g)^{0.83} \, 10^{a} - 1.4 \right],
+    \quad a = 0.00091\,T - 0.0125\,\mathrm{API}
+    $$
 
     Standing, M. B. (1947), "A pressure-volume-temperature correlation for
     mixtures of California oils and gases", Drilling and Production Practice,
@@ -272,14 +272,14 @@ def solution_gor_standing(
 
     Notes
     -----
-    Inverse of :func:`bubble_point_standing`:
+    Inverse of `bubble_point_standing`:
 
-    .. math::
+    $$
+    R_s = \gamma_g \left[ \left(\frac{p}{18.2} + 1.4\right)
+    10^{x} \right]^{1.2048}, \quad x = 0.0125\,\mathrm{API} - 0.00091\,T
+    $$
 
-        R_s = \gamma_g \left[ \left(\frac{p}{18.2} + 1.4\right)
-        10^{x} \right]^{1.2048}, \quad x = 0.0125\,\mathrm{API} - 0.00091\,T
-
-    Standing (1947), see :func:`bubble_point_standing`.
+    Standing (1947), see `bubble_point_standing`.
 
     Examples
     --------
@@ -328,12 +328,12 @@ def oil_fvf_standing(
 
     Notes
     -----
-    .. math::
+    $$
+    B_o = 0.9759 + 0.000120 \left[ R_s \sqrt{\gamma_g / \gamma_o}
+    + 1.25\,T \right]^{1.2}
+    $$
 
-        B_o = 0.9759 + 0.000120 \left[ R_s \sqrt{\gamma_g / \gamma_o}
-        + 1.25\,T \right]^{1.2}
-
-    Standing (1947), see :func:`bubble_point_standing`.
+    Standing (1947), see `bubble_point_standing`.
 
     Examples
     --------
@@ -418,16 +418,16 @@ def solution_gor_vasquez_beggs(
 
     Notes
     -----
-    .. math::
+    $$
+    R_s = C_1 \gamma_{gs} p^{C_2}
+    \exp\!\left(\frac{C_3\,\mathrm{API}}{T + 460}\right)
+    $$
 
-        R_s = C_1 \gamma_{gs} p^{C_2}
-        \exp\!\left(\frac{C_3\,\mathrm{API}}{T + 460}\right)
-
-    with :math:`(C_1, C_2, C_3) = (0.0362, 1.0937, 25.7240)` for API <= 30
-    and :math:`(0.0178, 1.1870, 23.931)` above, and the separator-corrected
+    with $(C_1, C_2, C_3) = (0.0362, 1.0937, 25.7240)$ for API <= 30
+    and $(0.0178, 1.1870, 23.931)$ above, and the separator-corrected
     gravity
-    :math:`\gamma_{gs} = \gamma_g [1 + 5.912\times10^{-5}\,\mathrm{API}\,
-    T_{sep} \log_{10}(p_{sep}/114.7)]`.
+    $\gamma_{gs} = \gamma_g [1 + 5.912\times10^{-5}\,\mathrm{API}\,
+    T_{sep} \log_{10}(p_{sep}/114.7)]$.
 
     Vasquez, M. and Beggs, H. D. (1980), "Correlations for fluid physical
     property prediction", JPT 32(6), 968-970, SPE-6719-PA.
@@ -493,12 +493,12 @@ def bubble_point_vasquez_beggs(
 
     Notes
     -----
-    Algebraic inverse of :func:`solution_gor_vasquez_beggs`:
+    Algebraic inverse of `solution_gor_vasquez_beggs`:
 
-    .. math::
-
-        p_b = \left[\frac{R_s}{C_1 \gamma_{gs}}
-        \exp\!\left(-\frac{C_3\,\mathrm{API}}{T + 460}\right)\right]^{1/C_2}
+    $$
+    p_b = \left[\frac{R_s}{C_1 \gamma_{gs}}
+    \exp\!\left(-\frac{C_3\,\mathrm{API}}{T + 460}\right)\right]^{1/C_2}
+    $$
 
     Examples
     --------
@@ -556,14 +556,14 @@ def oil_fvf_vasquez_beggs(
 
     Notes
     -----
-    .. math::
+    $$
+    B_o = 1 + C_1 R_s + (T - 60) \frac{\mathrm{API}}{\gamma_{gs}}
+    (C_2 + C_3 R_s)
+    $$
 
-        B_o = 1 + C_1 R_s + (T - 60) \frac{\mathrm{API}}{\gamma_{gs}}
-        (C_2 + C_3 R_s)
-
-    with :math:`(C_1, C_2, C_3) = (4.677\times10^{-4}, 1.751\times10^{-5},
-    -1.811\times10^{-8})` for API <= 30 and :math:`(4.670\times10^{-4},
-    1.100\times10^{-5}, 1.337\times10^{-9})` above. Vasquez and Beggs (1980).
+    with $(C_1, C_2, C_3) = (4.677\times10^{-4}, 1.751\times10^{-5},
+    -1.811\times10^{-8})$ for API <= 30 and $(4.670\times10^{-4},
+    1.100\times10^{-5}, 1.337\times10^{-9})$ above. Vasquez and Beggs (1980).
 
     Examples
     --------
@@ -627,11 +627,13 @@ def oil_fvf_undersaturated(
 
     Notes
     -----
-    With :math:`c_o = A / p` and
-    :math:`A = 10^{-5}(-1433 + 5 R_{sb} + 17.2\,T - 1180\,\gamma_g
-    + 12.61\,\mathrm{API})`:
+    With $c_o = A / p$ and
+    $A = 10^{-5}(-1433 + 5 R_{sb} + 17.2\,T - 1180\,\gamma_g
+    + 12.61\,\mathrm{API})$:
 
-    .. math:: B_o = B_{ob} \exp\left[-A \ln(p / p_b)\right]
+    $$
+    B_o = B_{ob} \exp\left[-A \ln(p / p_b)\right]
+    $$
 
     Vasquez and Beggs (1980).
 
@@ -684,10 +686,10 @@ def dead_oil_viscosity_beggs_robinson(
 
     Notes
     -----
-    .. math::
-
-        \mu_{od} = 10^{X} - 1, \quad X = 10^{3.0324 - 0.02023\,\mathrm{API}}
-        \, T^{-1.163}
+    $$
+    \mu_{od} = 10^{X} - 1, \quad X = 10^{3.0324 - 0.02023\,\mathrm{API}}
+    \, T^{-1.163}
+    $$
 
     Beggs, H. D. and Robinson, J. R. (1975), "Estimating the viscosity of
     crude oil systems", JPT 27(9), 1140-1141, SPE-5434-PA. The correlation
@@ -729,10 +731,10 @@ def live_oil_viscosity_beggs_robinson(
 
     Notes
     -----
-    .. math::
-
-        \mu_o = A \mu_{od}^{B}, \quad A = 10.715 (R_s + 100)^{-0.515},
-        \quad B = 5.44 (R_s + 150)^{-0.338}
+    $$
+    \mu_o = A \mu_{od}^{B}, \quad A = 10.715 (R_s + 100)^{-0.515},
+    \quad B = 5.44 (R_s + 150)^{-0.338}
+    $$
 
     Beggs and Robinson (1975).
 
@@ -780,10 +782,10 @@ def undersaturated_oil_viscosity_vasquez_beggs(
 
     Notes
     -----
-    .. math::
-
-        \mu_o = \mu_{ob} (p / p_b)^{m}, \quad
-        m = 2.6\,p^{1.187} \exp(-11.513 - 8.98\times10^{-5} p)
+    $$
+    \mu_o = \mu_{ob} (p / p_b)^{m}, \quad
+    m = 2.6\,p^{1.187} \exp(-11.513 - 8.98\times10^{-5} p)
+    $$
 
     Vasquez and Beggs (1980).
 
@@ -832,10 +834,10 @@ def pseudo_critical_standing(
     -----
     Standing's fit for natural gas systems (sweet, dry gas):
 
-    .. math::
-
-        T_{pc} = 168 + 325\gamma_g - 12.5\gamma_g^2, \quad
-        p_{pc} = 677 + 15\gamma_g - 37.5\gamma_g^2
+    $$
+    T_{pc} = 168 + 325\gamma_g - 12.5\gamma_g^2, \quad
+    p_{pc} = 677 + 15\gamma_g - 37.5\gamma_g^2
+    $$
 
     Standing, M. B. (1977), Volumetric and Phase Behavior of Oil Field
     Hydrocarbon Systems, SPE.
@@ -889,16 +891,16 @@ def z_factor_hall_yarborough(
 
     Notes
     -----
-    With :math:`t = 1/T_{pr}`, the reduced density :math:`y` solves
+    With $t = 1/T_{pr}$, the reduced density $y$ solves
 
-    .. math::
+    $$
+    -A p_{pr} + \frac{y + y^2 + y^3 - y^4}{(1-y)^3} - B y^2 + C y^D = 0
+    $$
 
-        -A p_{pr} + \frac{y + y^2 + y^3 - y^4}{(1-y)^3} - B y^2 + C y^D = 0
-
-    where :math:`A = 0.06125\,t\,e^{-1.2(1-t)^2}`,
-    :math:`B = t(14.76 - 9.76t + 4.58t^2)`,
-    :math:`C = t(90.7 - 242.2t + 42.4t^2)` and :math:`D = 2.18 + 2.82t`.
-    Then :math:`z = A p_{pr} / y`. Solved here by a damped Newton method.
+    where $A = 0.06125\,t\,e^{-1.2(1-t)^2}$,
+    $B = t(14.76 - 9.76t + 4.58t^2)$,
+    $C = t(90.7 - 242.2t + 42.4t^2)$ and $D = 2.18 + 2.82t$.
+    Then $z = A p_{pr} / y$. Solved here by a damped Newton method.
 
     Hall, K. R. and Yarborough, L. (1973), "A new equation of state for
     Z-factor calculations", Oil and Gas Journal 71(25), 82-92.
@@ -950,8 +952,8 @@ def z_factor(
 ) -> FloatOrArray:
     """Gas compressibility factor from pressure, temperature and gravity.
 
-    Combines :func:`pseudo_critical_standing` with
-    :func:`z_factor_hall_yarborough`.
+    Combines `pseudo_critical_standing` with
+    `z_factor_hall_yarborough`.
 
     Parameters
     ----------
@@ -1015,9 +1017,11 @@ def gas_fvf(
     From the real gas law between reservoir and standard conditions
     (14.7 psia, 60 degF):
 
-    .. math:: B_g = \frac{p_{sc}}{T_{sc}} \frac{z T}{p} = 0.02829 \frac{z T}{p}
+    $$
+    B_g = \frac{p_{sc}}{T_{sc}} \frac{z T}{p} = 0.02829 \frac{z T}{p}
+    $$
 
-    with :math:`T` in degR.
+    with $T$ in degR.
 
     Examples
     --------

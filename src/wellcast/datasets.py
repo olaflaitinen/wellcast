@@ -15,7 +15,7 @@
 
 """Synthetic production data for examples, tests and the demo app.
 
-:func:`make_synthetic_field` simulates daily surface measurements for a small
+`make_synthetic_field` simulates daily surface measurements for a small
 oil field. The model is deliberately simple but physically consistent, so the
 analysis modules can be checked against known ground truth:
 
@@ -61,12 +61,12 @@ _MIN_PWF = 200.0
 
 @dataclass(frozen=True)
 class SyntheticField:
-    """Output of :func:`make_synthetic_field`.
+    """Output of `make_synthetic_field`.
 
     Attributes
     ----------
     production : pandas.DataFrame
-        Measurements in the canonical schema (see :mod:`wellcast.io`),
+        Measurements in the canonical schema (see `wellcast.io`),
         indexed by ``date`` and sorted by well and date.
     labels : pandas.DataFrame
         Ground truth aligned row by row with ``production``: ``well``,

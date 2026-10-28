@@ -18,13 +18,13 @@
 Two kinds of features are built:
 
 * **Physics features** combine measurements of the same row (GOR, water cut,
-  drawdown and so on). :data:`FEATURE_SOURCES` records which raw columns each
+  drawdown and so on). `FEATURE_SOURCES` records which raw columns each
   one uses, so a model can drop features computed from its own target.
 * **Lag and rolling features** summarize the past of a column within each
   well. They are leakage-safe by construction: the value at time ``t`` only
   uses rows strictly before ``t`` of the same well.
 
-All functions expect the canonical schema of :mod:`wellcast.io`, sorted by
+All functions expect the canonical schema of `wellcast.io`, sorted by
 date within each well, and return a new DataFrame.
 """
 
@@ -152,11 +152,11 @@ def add_physics_features(
 
     Notes
     -----
-    .. math::
-
-        \mathrm{GOR} = 1000 \frac{q_g}{q_o}, \quad
-        f_w = \frac{q_w}{q_o + q_w}, \quad
-        \Delta p = \bar{p}_r - p_{wf}
+    $$
+    \mathrm{GOR} = 1000 \frac{q_g}{q_o}, \quad
+    f_w = \frac{q_w}{q_o + q_w}, \quad
+    \Delta p = \bar{p}_r - p_{wf}
+    $$
 
     Gas rates are in Mscf/d, hence the factor 1000. Cumulative volumes
     integrate daily-average rates over the time step to the previous row.
@@ -433,7 +433,7 @@ def build_features(
     windows : sequence of int, optional
         Rolling-mean windows in rows. Default (7, 30).
     reservoir_pressure : float or mapping, optional
-        Passed to :func:`add_physics_features`.
+        Passed to `add_physics_features`.
     by : str or None, optional
         Well column. Default ``"well"``.
 

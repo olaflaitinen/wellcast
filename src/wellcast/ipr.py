@@ -20,7 +20,7 @@ ratio in scf/STB and choke size in 64ths of an inch. Inputs may be scalars or
 arrays; scalar inputs return a ``float``.
 
 An IPR gives the rate a well delivers for a given flowing bottomhole pressure
-:math:`p_{wf}` at average reservoir pressure :math:`\bar{p}_r`.
+$p_{wf}$ at average reservoir pressure $\bar{p}_r$.
 """
 
 from __future__ import annotations
@@ -99,7 +99,9 @@ def productivity_index(
 
     Notes
     -----
-    .. math:: J = \frac{q}{\bar{p}_r - p_{wf}}
+    $$
+    J = \frac{q}{\bar{p}_r - p_{wf}}
+    $$
 
     Examples
     --------
@@ -143,7 +145,9 @@ def linear_ipr(
 
     Notes
     -----
-    .. math:: q = J (\bar{p}_r - p_{wf})
+    $$
+    q = J (\bar{p}_r - p_{wf})
+    $$
 
     Examples
     --------
@@ -185,7 +189,7 @@ def vogel_qmax(
     Returns
     -------
     float
-        Maximum rate :math:`q_{o,max}` at :math:`p_{wf} = 0`, STB/d.
+        Maximum rate $q_{o,max}$ at $p_{wf} = 0$, STB/d.
 
     Raises
     ------
@@ -194,10 +198,10 @@ def vogel_qmax(
 
     Notes
     -----
-    .. math::
-
-        q_{o,max} = \frac{q_o}{1 - 0.2 (p_{wf}/\bar{p}_r)
-        - 0.8 (p_{wf}/\bar{p}_r)^2}
+    $$
+    q_{o,max} = \frac{q_o}{1 - 0.2 (p_{wf}/\bar{p}_r)
+    - 0.8 (p_{wf}/\bar{p}_r)^2}
+    $$
 
     Vogel, J. V. (1968), "Inflow performance relationships for solution-gas
     drive wells", JPT 20(1), 83-92, SPE-1476-PA.
@@ -229,7 +233,7 @@ def vogel_ipr(
     reservoir_pressure : float
         Average reservoir pressure, psi.
     qmax : float
-        Absolute open flow potential, STB/d (see :func:`vogel_qmax`).
+        Absolute open flow potential, STB/d (see `vogel_qmax`).
 
     Returns
     -------
@@ -243,10 +247,10 @@ def vogel_ipr(
 
     Notes
     -----
-    .. math::
-
-        \frac{q_o}{q_{o,max}} = 1 - 0.2 \frac{p_{wf}}{\bar{p}_r}
-        - 0.8 \left(\frac{p_{wf}}{\bar{p}_r}\right)^2
+    $$
+    \frac{q_o}{q_{o,max}} = 1 - 0.2 \frac{p_{wf}}{\bar{p}_r}
+    - 0.8 \left(\frac{p_{wf}}{\bar{p}_r}\right)^2
+    $$
 
     Vogel (1968).
 
@@ -299,7 +303,9 @@ def fetkovich_ipr(
 
     Notes
     -----
-    .. math:: q_o = C (\bar{p}_r^2 - p_{wf}^2)^n
+    $$
+    q_o = C (\bar{p}_r^2 - p_{wf}^2)^n
+    $$
 
     Fetkovich, M. J. (1973), "The isochronal testing of oil wells",
     SPE-4529-MS.
@@ -349,7 +355,7 @@ def fit_fetkovich(
 
     Notes
     -----
-    Least squares on :math:`\log q = \log C + n \log(\bar{p}_r^2 - p_{wf}^2)`.
+    Least squares on $\log q = \log C + n \log(\bar{p}_r^2 - p_{wf}^2)$.
 
     Examples
     --------
@@ -412,17 +418,17 @@ def composite_ipr(
 
     Notes
     -----
-    With :math:`q_b = J(\bar{p}_r - p_b)`:
+    With $q_b = J(\bar{p}_r - p_b)$:
 
-    .. math::
+    $$
+    q = \begin{cases}
+    J(\bar{p}_r - p_{wf}) & p_{wf} \ge p_b \\
+    q_b + \frac{J p_b}{1.8}\left[1 - 0.2\frac{p_{wf}}{p_b}
+    - 0.8\left(\frac{p_{wf}}{p_b}\right)^2\right] & p_{wf} < p_b
+    \end{cases}
+    $$
 
-        q = \begin{cases}
-        J(\bar{p}_r - p_{wf}) & p_{wf} \ge p_b \\
-        q_b + \frac{J p_b}{1.8}\left[1 - 0.2\frac{p_{wf}}{p_b}
-        - 0.8\left(\frac{p_{wf}}{p_b}\right)^2\right] & p_{wf} < p_b
-        \end{cases}
-
-    The two branches join with equal slope at :math:`p_b`. Brown, K. E.
+    The two branches join with equal slope at $p_b$. Brown, K. E.
     (1984), The Technology of Artificial Lift Methods, Vol. 4, PennWell.
 
     Examples
@@ -448,7 +454,7 @@ def composite_productivity_index(
     reservoir_pressure: float,
     bubble_point: float,
 ) -> float:
-    r"""Productivity index for :func:`composite_ipr` from one rate test.
+    r"""Productivity index for `composite_ipr` from one rate test.
 
     Parameters
     ----------
@@ -473,13 +479,13 @@ def composite_productivity_index(
 
     Notes
     -----
-    For a test above the bubble point :math:`J = q/(\bar{p}_r - p_{wf})`;
+    For a test above the bubble point $J = q/(\bar{p}_r - p_{wf})$;
     below it
 
-    .. math::
-
-        J = \frac{q}{\bar{p}_r - p_b + \frac{p_b}{1.8}\left[1 - 0.2
-        \frac{p_{wf}}{p_b} - 0.8\left(\frac{p_{wf}}{p_b}\right)^2\right]}
+    $$
+    J = \frac{q}{\bar{p}_r - p_b + \frac{p_b}{1.8}\left[1 - 0.2
+    \frac{p_{wf}}{p_b} - 0.8\left(\frac{p_{wf}}{p_b}\right)^2\right]}
+    $$
 
     Examples
     --------
@@ -617,7 +623,9 @@ def choke_pressure(
 
     Notes
     -----
-    .. math:: p_{wh} = \frac{A\, q_L\, R^{B}}{S^{C}}
+    $$
+    p_{wh} = \frac{A\, q_L\, R^{B}}{S^{C}}
+    $$
 
     The equations assume critical flow, roughly when the downstream pressure
     is below 0.588 times the upstream pressure. Gilbert, W. E. (1954),
@@ -644,7 +652,7 @@ def choke_rate(
 ) -> FloatOrArray:
     r"""Liquid rate through a choke for a given upstream pressure.
 
-    Inverse of :func:`choke_pressure`.
+    Inverse of `choke_pressure`.
 
     Parameters
     ----------
@@ -669,7 +677,9 @@ def choke_rate(
 
     Notes
     -----
-    .. math:: q_L = \frac{p_{wh} S^{C}}{A R^{B}}
+    $$
+    q_L = \frac{p_{wh} S^{C}}{A R^{B}}
+    $$
 
     Examples
     --------
@@ -689,7 +699,7 @@ def gilbert_choke(
     """Upstream pressure from Gilbert's choke equation.
 
     Shortcut for ``choke_pressure(..., method="gilbert")``; see
-    :func:`choke_pressure` for parameters and units.
+    `choke_pressure` for parameters and units.
 
     Parameters
     ----------

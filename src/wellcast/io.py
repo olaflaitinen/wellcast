@@ -15,29 +15,26 @@
 
 """Read field production data and well logs into standard DataFrames.
 
-Canonical production schema
----------------------------
-:func:`read_production` returns a DataFrame with a ``DatetimeIndex`` named
-``date``, sorted by well and date, and the columns below. Only ``well`` is
-mandatory; the others are present when the source provides them. Columns that
-do not match the schema are kept unchanged after the canonical ones.
+**Canonical production schema.** `read_production` returns a DataFrame with
+a ``DatetimeIndex`` named ``date``, sorted by well and date, and the columns
+below. Only ``well`` is mandatory; the others are present when the source
+provides them. Columns that do not match the schema are kept unchanged after
+the canonical ones.
 
-===================  ======  =======  ====================================
-Column               Unit    dtype    Description
-===================  ======  =======  ====================================
-``well``             -       str      Well identifier
-``oil_rate``         bbl/d   float64  Oil rate at stock-tank conditions
-``gas_rate``         Mscf/d  float64  Gas rate at standard conditions
-``water_rate``       bbl/d   float64  Water rate
-``water_inj_rate``   bbl/d   float64  Water injection rate
-``gas_inj_rate``     Mscf/d  float64  Gas injection or gas lift rate
-``whp``              psi     float64  Wellhead (tubing head) pressure
-``wht``              degF    float64  Wellhead temperature
-``bhp``              psi     float64  Bottomhole (downhole gauge) pressure
-``bht``              degF    float64  Bottomhole temperature
-``choke``            in/64   float64  Choke bean size
-``on_stream_hours``  h       float64  Producing hours in the period
-===================  ======  =======  ====================================
+| Column | Unit | dtype | Description |
+|---|---|---|---|
+| ``well`` |  | str | Well identifier |
+| ``oil_rate`` | bbl/d | float64 | Oil rate at stock-tank conditions |
+| ``gas_rate`` | Mscf/d | float64 | Gas rate at standard conditions |
+| ``water_rate`` | bbl/d | float64 | Water rate |
+| ``water_inj_rate`` | bbl/d | float64 | Water injection rate |
+| ``gas_inj_rate`` | Mscf/d | float64 | Gas injection or gas lift rate |
+| ``whp`` | psi | float64 | Wellhead (tubing head) pressure |
+| ``wht`` | degF | float64 | Wellhead temperature |
+| ``bhp`` | psi | float64 | Bottomhole (downhole gauge) pressure |
+| ``bht`` | degF | float64 | Bottomhole temperature |
+| ``choke`` | in/64 | float64 | Choke bean size |
+| ``on_stream_hours`` | h | float64 | Producing hours in the period |
 """
 
 from __future__ import annotations
@@ -75,7 +72,7 @@ class ColumnSpec:
     name : str
         Canonical column name.
     unit : str
-        Unit symbol understood by :func:`wellcast.units.convert`, or ``"-"``.
+        Unit symbol understood by `wellcast.units.convert`, or ``"-"``.
     dtype : str
         Expected dtype.
     description : str
@@ -202,7 +199,7 @@ def standardize_columns(
         Raw table.
     alias_map : mapping of str to str, optional
         Extra aliases ``{source_name: canonical_name}``. They take precedence
-        over :data:`DEFAULT_ALIASES`. Matching ignores case and punctuation.
+        over `DEFAULT_ALIASES`. Matching ignores case and punctuation.
 
     Returns
     -------
@@ -270,7 +267,7 @@ def read_production(
     units : mapping of str to str, optional
         Units of canonical columns in the source, for example
         ``{"oil_rate": "sm3/d", "whp": "bar"}``. Those columns are converted
-        to the canonical units listed in :data:`CANONICAL_SCHEMA`.
+        to the canonical units listed in `CANONICAL_SCHEMA`.
     well : str, optional
         Well name to use when the file has no well column.
     sheet_name : str or int, optional
@@ -315,7 +312,7 @@ def from_dataframe(
 ) -> pd.DataFrame:
     """Convert an in-memory table into the canonical schema.
 
-    Same processing as :func:`read_production`, for data that is already in
+    Same processing as `read_production`, for data that is already in
     a DataFrame (for example from a database query or a web upload).
 
     Parameters

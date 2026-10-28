@@ -189,11 +189,13 @@ def hampel_filter(
 
     Notes
     -----
-    A value :math:`x_i` is flagged when
+    A value $x_i$ is flagged when
 
-    .. math:: |x_i - m_i| > t \cdot 1.4826 \, \mathrm{MAD}_i
+    $$
+    |x_i - m_i| > t \cdot 1.4826 \, \mathrm{MAD}_i
+    $$
 
-    where :math:`m_i` and :math:`\mathrm{MAD}_i` are the median and median
+    where $m_i$ and $\mathrm{MAD}_i$ are the median and median
     absolute deviation of the centered window. Missing values inside the
     window are ignored. See Pearson, R. K. (2002), "Outliers in process
     modeling and identification", IEEE Trans. Control Syst. Technol. 10(1).
@@ -251,8 +253,8 @@ def rolling_zscore_outliers(
 
     Notes
     -----
-    :math:`z_i = (x_i - \bar{x}_i) / s_i` with the rolling mean
-    :math:`\bar{x}_i` and standard deviation :math:`s_i`. Windows with zero
+    $z_i = (x_i - \bar{x}_i) / s_i$ with the rolling mean
+    $\bar{x}_i$ and standard deviation $s_i$. Windows with zero
     spread produce no flags.
 
     Examples
@@ -291,8 +293,8 @@ def iqr_outliers(series: pd.Series, k: float = 1.5) -> pd.Series:
 
     Notes
     -----
-    Values below :math:`Q_1 - k\,\mathrm{IQR}` or above
-    :math:`Q_3 + k\,\mathrm{IQR}` are flagged (Tukey, 1977, Exploratory Data
+    Values below $Q_1 - k\,\mathrm{IQR}$ or above
+    $Q_3 + k\,\mathrm{IQR}$ are flagged (Tukey, 1977, Exploratory Data
     Analysis).
 
     Examples
@@ -442,7 +444,7 @@ def fill_gaps(
     ----------
     df : pandas.DataFrame
         Regularly sampled table with a ``DatetimeIndex``
-        (see :func:`resample_regular`).
+        (see `resample_regular`).
     columns : sequence of str, optional
         Columns to fill. Default: all numeric columns.
     method : {"linear", "ffill", "bfill"}, optional
@@ -549,7 +551,7 @@ def qc_report(
         ``flatline`` and ``impossible``. ``flatline`` is NaN for setpoint
         columns (``choke``, ``on_stream_hours``), which are constant by
         design. ``impossible`` counts values outside
-        :data:`IMPOSSIBLE_RANGES` (for example a negative pressure or a water
+        `IMPOSSIBLE_RANGES` (for example a negative pressure or a water
         cut outside [0, 1]); it is NaN for columns without a rule.
 
     Examples
