@@ -8,22 +8,41 @@
 <p align="center"><strong>Oil and gas well performance analysis for Python.</strong></p>
 
 <p align="center">
-  <a href="https://pypi.org/project/wellcast/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/wellcast?cacheSeconds=3600"></a>
-  <a href="https://pypi.org/project/wellcast/"><img alt="Python versions" src="https://img.shields.io/pypi/pyversions/wellcast?cacheSeconds=3600"></a>
-  <a href="https://pypi.org/project/wellcast/"><img alt="Development status" src="https://img.shields.io/pypi/status/wellcast?cacheSeconds=3600"></a>
-  <a href="https://pypi.org/project/wellcast/"><img alt="Implementation" src="https://img.shields.io/pypi/implementation/wellcast?cacheSeconds=3600"></a>
-  <a href="https://pypi.org/project/wellcast/"><img alt="Wheel" src="https://img.shields.io/pypi/wheel/wellcast?cacheSeconds=3600"></a>
-  <a href="https://pypi.org/project/wellcast/"><img alt="Distribution format" src="https://img.shields.io/pypi/format/wellcast?cacheSeconds=3600"></a>
-  <a href="https://pypi.org/project/wellcast/"><img alt="Typed" src="https://img.shields.io/pypi/types/wellcast?cacheSeconds=3600"></a>
-  <a href="https://pypistats.org/packages/wellcast"><img alt="Monthly downloads" src="https://img.shields.io/pypi/dm/wellcast?cacheSeconds=3600"></a>
-  <a href="https://github.com/olaflaitinen/wellcast/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/olaflaitinen/wellcast/actions/workflows/ci.yml/badge.svg"></a>
-  <a href="https://codecov.io/gh/olaflaitinen/wellcast"><img alt="Coverage" src="https://codecov.io/gh/olaflaitinen/wellcast/branch/main/graph/badge.svg"></a>
-  <a href="https://olaflaitinen.github.io/wellcast"><img alt="Docs" src="https://github.com/olaflaitinen/wellcast/actions/workflows/docs.yml/badge.svg"></a>
-  <a href="https://github.com/olaflaitinen/wellcast/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/pypi/l/wellcast?cacheSeconds=3600"></a>
+  <a href="https://github.com/olaflaitinen/wellcast/actions/workflows/ci.yml"><img alt="CI" src="https://img.shields.io/github/actions/workflow/status/olaflaitinen/wellcast/ci.yml?branch=main&event=push&label=CI&logo=githubactions&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://github.com/olaflaitinen/wellcast/actions/workflows/codeql.yml"><img alt="CodeQL" src="https://img.shields.io/github/actions/workflow/status/olaflaitinen/wellcast/codeql.yml?branch=main&event=push&label=CodeQL&logo=github&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://pre-commit.com/"><img alt="pre-commit" src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=precommit&logoColor=white"></a>
+</p>
+<p align="center">
+  <a href="https://codecov.io/gh/olaflaitinen/wellcast"><img alt="Coverage" src="https://img.shields.io/codecov/c/github/olaflaitinen/wellcast?logo=codecov&logoColor=white&cacheSeconds=3600"></a>
+</p>
+<p align="center">
+  <a href="https://slsa.dev"><img alt="SLSA level 3" src="https://slsa.dev/images/gh-badge-level3.svg"></a>
+  <a href="https://scorecard.dev/viewer/?uri=github.com/olaflaitinen/wellcast"><img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/olaflaitinen/wellcast/badge"></a>
+  <a href="https://github.com/olaflaitinen/wellcast/actions/workflows/trivy.yml"><img alt="Trivy" src="https://img.shields.io/github/actions/workflow/status/olaflaitinen/wellcast/trivy.yml?branch=main&event=push&label=Trivy&logo=trivy&logoColor=white&cacheSeconds=3600"></a>
+</p>
+<p align="center">
+  <a href="https://pypi.org/project/wellcast/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Python versions" src="https://img.shields.io/pypi/pyversions/wellcast?logo=python&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://pypistats.org/packages/wellcast"><img alt="Monthly downloads" src="https://img.shields.io/pypi/dm/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
   <a href="https://pepy.tech/project/wellcast"><img alt="Downloads" src="https://static.pepy.tech/badge/wellcast/month"></a>
-  <a href="https://github.com/astral-sh/ruff"><img alt="Code style: ruff" src="https://img.shields.io/badge/code%20style-ruff-261230"></a>
-  <a href="https://mypy-lang.org/"><img alt="Typed: mypy" src="https://img.shields.io/badge/typed-mypy%20strict-2a6db2"></a>
-  <a href="https://orcid.org/0009-0006-5184-0810"><img alt="ORCID" src="https://img.shields.io/badge/ORCID-0009--0006--5184--0810-a6ce39"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Wheel" src="https://img.shields.io/pypi/wheel/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Distribution format" src="https://img.shields.io/pypi/format/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Development status" src="https://img.shields.io/pypi/status/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Implementation" src="https://img.shields.io/pypi/implementation/wellcast?logo=python&logoColor=white&cacheSeconds=3600"></a>
+</p>
+<p align="center">
+  <a href="https://olaflaitinen.github.io/wellcast"><img alt="Docs" src="https://img.shields.io/github/actions/workflow/status/olaflaitinen/wellcast/docs.yml?branch=main&event=push&label=docs&logo=materialformkdocs&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://olaflaitinen.github.io/wellcast"><img alt="GitHub Pages" src="https://img.shields.io/github/deployments/olaflaitinen/wellcast/github-pages?label=GitHub%20Pages&logo=githubpages&logoColor=white&cacheSeconds=3600"></a>
+</p>
+<p align="center">
+  <a href="https://pypi.org/project/wellcast/"><img alt="Typed" src="https://img.shields.io/pypi/types/wellcast?label=PEP%20561&logo=python&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://mypy-lang.org/"><img alt="mypy" src="https://img.shields.io/badge/mypy-strict-2a6db2?logo=python&logoColor=white"></a>
+  <a href="https://github.com/astral-sh/ruff"><img alt="Ruff" src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json"></a>
+</p>
+<p align="center">
+  <a href="https://github.com/olaflaitinen/wellcast/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/pypi/l/wellcast?logo=mozilla&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://github.com/olaflaitinen/wellcast/releases/latest"><img alt="GitHub release" src="https://img.shields.io/github/v/release/olaflaitinen/wellcast?logo=github&logoColor=white&cacheSeconds=3600"></a>
+  <a href="https://orcid.org/0009-0006-5184-0810"><img alt="ORCID" src="https://img.shields.io/badge/ORCID-0009--0006--5184--0810-a6ce39?logo=orcid&logoColor=white"></a>
 </p>
 
 Production engineers repeat the same analysis for every field: clean daily
