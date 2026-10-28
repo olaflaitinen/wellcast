@@ -8,8 +8,8 @@
 <p align="center"><strong>Oil and gas well performance analysis for Python.</strong></p>
 
 <p align="center">
-  <a href="https://pypi.org/project/wellcast/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/wellcast"></a>
-  <a href="https://pypi.org/project/wellcast/"><img alt="Python versions" src="https://img.shields.io/pypi/pyversions/wellcast"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/wellcast?cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Python versions" src="https://img.shields.io/pypi/pyversions/wellcast?cacheSeconds=3600"></a>
   <a href="https://github.com/olaflaitinen/wellcast/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/olaflaitinen/wellcast/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://codecov.io/gh/olaflaitinen/wellcast"><img alt="Coverage" src="https://codecov.io/gh/olaflaitinen/wellcast/branch/main/graph/badge.svg"></a>
   <a href="https://olaflaitinen.github.io/wellcast"><img alt="Docs" src="https://github.com/olaflaitinen/wellcast/actions/workflows/docs.yml/badge.svg"></a>
