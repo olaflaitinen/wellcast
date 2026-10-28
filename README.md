@@ -24,7 +24,6 @@
   <a href="https://pypi.org/project/wellcast/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
   <a href="https://pypi.org/project/wellcast/"><img alt="Python versions" src="https://img.shields.io/pypi/pyversions/wellcast?logo=python&logoColor=white&cacheSeconds=3600"></a>
   <a href="https://pypistats.org/packages/wellcast"><img alt="Monthly downloads" src="https://img.shields.io/pypi/dm/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
-  <a href="https://pepy.tech/project/wellcast"><img alt="Downloads" src="https://static.pepy.tech/badge/wellcast/month"></a>
   <a href="https://pypi.org/project/wellcast/"><img alt="Wheel" src="https://img.shields.io/pypi/wheel/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
   <a href="https://pypi.org/project/wellcast/"><img alt="Distribution format" src="https://img.shields.io/pypi/format/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
   <a href="https://pypi.org/project/wellcast/"><img alt="Development status" src="https://img.shields.io/pypi/status/wellcast?logo=pypi&logoColor=white&cacheSeconds=3600"></a>
