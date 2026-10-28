@@ -156,13 +156,14 @@ def arps_cumulative(t: npt.ArrayLike, qi: float, di: float, b: float) -> FloatOr
     """
     tt = as_float_array(t, "t")
     d = di / _DAYS_PER_YEAR
+    # expm1 and log1p keep full precision when d*t is small or b is close to
+    # 1, where the textbook forms subtract two nearly equal numbers.
     if b < _B_EPS:
-        return _out(qi / d * (1.0 - np.exp(-d * tt)))
+        return _out(-qi / d * np.expm1(-d * tt))
     if abs(b - 1.0) < _B_EPS:
         return _out(qi / d * np.log1p(d * tt))
-    return _out(
-        qi / ((1.0 - b) * d) * (1.0 - np.power(1.0 + b * d * tt, (b - 1.0) / b))
-    )
+    exponent = (b - 1.0) / b
+    return _out(-qi / ((1.0 - b) * d) * np.expm1(exponent * np.log1p(b * d * tt)))
 
 
 def arps_time_to_rate(q: npt.ArrayLike, qi: float, di: float, b: float) -> FloatOrArray:

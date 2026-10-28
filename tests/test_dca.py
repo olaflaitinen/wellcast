@@ -20,7 +20,7 @@ import sys
 import numpy as np
 import pandas as pd
 import pytest
-from hypothesis import given
+from hypothesis import example, given
 from hypothesis import strategies as st
 from scipy.integrate import quad
 
@@ -106,6 +106,9 @@ def test_b_near_limits_is_continuous() -> None:
     t1=st.floats(min_value=0.0, max_value=1e4),
     t2=st.floats(min_value=0.0, max_value=1e4),
 )
+# Regression: b just below 1 with a tiny t lost precision before the expm1 and
+# log1p rewrite of the hyperbolic cumulative.
+@example(qi=1.0, di=1.0, b=0.99999, t1=5.960464477539063e-08, t2=0.0)
 def test_rate_decreases_and_cumulative_increases(
     qi: float, di: float, b: float, t1: float, t2: float
 ) -> None:
