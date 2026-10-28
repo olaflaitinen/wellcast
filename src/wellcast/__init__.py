@@ -25,7 +25,7 @@ Examples
 '0.1.0'
 """
 
-from wellcast import clean, datasets, io, ipr, pvt, units
+from wellcast import clean, datasets, dca, io, ipr, pvt, units
 from wellcast.__about__ import (
     __author__,
     __copyright__,
@@ -35,6 +35,7 @@ from wellcast.__about__ import (
 )
 from wellcast.clean import qc_report
 from wellcast.datasets import make_synthetic_field
+from wellcast.dca import DeclineModel, fit_many
 from wellcast.exceptions import (
     DataValidationError,
     FitError,
@@ -47,6 +48,7 @@ from wellcast.units import convert
 
 __all__ = [
     "DataValidationError",
+    "DeclineModel",
     "FitError",
     "MissingDependencyError",
     "UnitError",
@@ -59,6 +61,8 @@ __all__ = [
     "clean",
     "convert",
     "datasets",
+    "dca",
+    "fit_many",
     "io",
     "ipr",
     "make_synthetic_field",
