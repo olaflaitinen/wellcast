@@ -1,0 +1,40 @@
+# Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# SPDX-License-Identifier: MPL-2.0
+
+cff-version: 1.2.0
+message: "If you use wellcast in your work, please cite it as below."
+type: software
+title: "wellcast: oil and gas well performance analysis for Python"
+version: 0.1.0
+license: MPL-2.0
+repository-code: "https://github.com/olaflaitinen/wellcast"
+url: "https://olaflaitinen.github.io/wellcast"
+authors:
+  - family-names: "Laitinen Imanov"
+    given-names: "Olaf Yunus"
+    email: "yunus.z.imanov@helsinki.fi"
+    affiliation: "Department of Mathematics and Statistics, University of Helsinki"
+    orcid: "https://orcid.org/0009-0006-5184-0810"
+keywords:
+  - petroleum engineering
+  - reservoir engineering
+  - production engineering
+  - oil and gas
+  - decline curve analysis
+  - PVT
+  - inflow performance relationship
+  - virtual flow metering
+  - well performance
+  - machine learning
+abstract: >-
+  wellcast is an open-source Python library for oil and gas well performance
+  analysis. It ingests field production data and well logs into a canonical
+  schema, flags data-quality problems, and provides empirical PVT
+  correlations, inflow performance relationships and choke equations, Arps
+  decline curve analysis with model selection and bootstrap uncertainty,
+  physics-informed and leakage-safe features, machine learning models for
+  virtual flow metering with time-aware validation, prediction intervals and
+  SHAP explanations, and well and reservoir diagnostics including Chan and
+  Hall plots, Havlena-Odeh material balance and anomaly detection. A
+  synthetic field generator with ground-truth labels and an interactive
+  Streamlit app make every analysis reproducible without third-party data.

@@ -133,5 +133,7 @@ nav:
       - exceptions: api/exceptions.md
   - CLI: cli.md
   - App: app.md
+  - Contributing: contributing.md
+  - Changelog: changelog.md
   - License: license.md
   - About: about.md
