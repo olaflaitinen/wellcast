@@ -27,6 +27,7 @@ from wellcast.exceptions import DataValidationError, MissingDependencyError
 from wellcast.io import (
     CANONICAL_SCHEMA,
     DEFAULT_ALIASES,
+    from_dataframe,
     read_las,
     read_production,
     standardize_columns,
@@ -143,6 +144,14 @@ def test_duplicate_alias_first_wins() -> None:
     raw = pd.DataFrame({"WHP": [1.0], "THP": [2.0]})
     out = standardize_columns(raw)
     assert list(out.columns) == ["whp", "THP"]
+
+
+def test_from_dataframe_matches_file_reader(csv_path: Path) -> None:
+    from_file = read_production(csv_path, units={"whp": "bar"})
+    in_memory = from_dataframe(
+        RAW.set_index("DATEPRD", drop=False), units={"whp": "bar"}
+    )
+    pd.testing.assert_frame_equal(from_file, in_memory)
 
 
 def test_read_las(tmp_path: Path) -> None:

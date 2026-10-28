@@ -59,6 +59,7 @@ __all__ = [
     "CANONICAL_SCHEMA",
     "DEFAULT_ALIASES",
     "ColumnSpec",
+    "from_dataframe",
     "read_las",
     "read_production",
     "standardize_columns",
@@ -301,7 +302,56 @@ def read_production(
     629.0
     """
     raw = _read_table(Path(path), sheet_name)
-    return _finalize(standardize_columns(raw, alias_map), units, well, dayfirst)
+    return from_dataframe(raw, alias_map, units=units, well=well, dayfirst=dayfirst)
+
+
+def from_dataframe(
+    raw: pd.DataFrame,
+    alias_map: Mapping[str, str] | None = None,
+    *,
+    units: Mapping[str, str] | None = None,
+    well: str | None = None,
+    dayfirst: bool = False,
+) -> pd.DataFrame:
+    """Convert an in-memory table into the canonical schema.
+
+    Same processing as :func:`read_production`, for data that is already in
+    a DataFrame (for example from a database query or a web upload).
+
+    Parameters
+    ----------
+    raw : pandas.DataFrame
+        Source table with a date column; its index is ignored.
+    alias_map : mapping of str to str, optional
+        Extra column aliases ``{source_name: canonical_name}``.
+    units : mapping of str to str, optional
+        Source units of canonical columns, converted to canonical units.
+    well : str, optional
+        Well name to use when the table has no well column.
+    dayfirst : bool, optional
+        Parse ambiguous dates as day first.
+
+    Returns
+    -------
+    pandas.DataFrame
+        Table indexed by a ``DatetimeIndex`` named ``date``, sorted by well
+        and date.
+
+    Raises
+    ------
+    DataValidationError
+        If no date column is found, dates cannot be parsed, or no well
+        identifier is available.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> raw = pd.DataFrame({"Date": ["2024-01-02", "2024-01-01"], "Qo": [90, 100]})
+    >>> from_dataframe(raw, well="A")["oil_rate"].tolist()
+    [100.0, 90.0]
+    """
+    standardized = standardize_columns(raw.reset_index(drop=True), alias_map)
+    return _finalize(standardized, units, well, dayfirst)
 
 
 def _finalize(
