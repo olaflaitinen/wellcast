@@ -1,0 +1,44 @@
+# Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# SPDX-License-Identifier: MPL-2.0
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: check-yaml
+        args: [--unsafe]
+      - id: check-toml
+      - id: check-added-large-files
+        args: [--maxkb=1024]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2
+    hooks:
+      - id: mypy
+        args: [--strict]
+        files: ^src/
+        additional_dependencies: [numpy, pandas-stubs]
+
+  - repo: local
+    hooks:
+      - id: no-unicode-dashes
+        name: no em dashes, en dashes or emojis
+        language: pygrep
+        entry: '[\u2013\u2014\U0001F300-\U0001FAFF\u2600-\u27BF]'
+        types: [text]
+      - id: source-header-footer
+        name: Python files carry the wellcast header and footer
+        language: python
+        entry: python scripts/check_headers.py
+        types: [python]

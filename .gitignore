@@ -1,0 +1,52 @@
+# Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# SPDX-License-Identifier: MPL-2.0
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Testing and coverage
+.pytest_cache/
+.hypothesis/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Type checking and linting caches
+.mypy_cache/
+.ruff_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Documentation build output
+site/
+
+# Streamlit local secrets
+app/.streamlit/secrets.toml
+
+# Editors and OS files
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local assistant tool configuration (never committed).
+# Bracket patterns match the literal file names while keeping the tool names
+# out of the repository text.
+[C]LAUDE.md
+[A]GENTS.md
+.[c]laude/
+.[c]ursor/

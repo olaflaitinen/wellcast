@@ -1,0 +1,58 @@
+# =============================================================================
+# wellcast: public API re-exports and package version
+# -----------------------------------------------------------------------------
+# Module:      wellcast
+# Repository:  https://github.com/olaflaitinen/wellcast
+# Author:      Olaf Yunus Laitinen Imanov <yunus.z.imanov@helsinki.fi>
+# Copyright:   Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# License:     Mozilla Public License 2.0
+# SPDX-License-Identifier: MPL-2.0
+#
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+# =============================================================================
+
+"""wellcast: oil and gas well performance analysis.
+
+Field data ingestion and QC, decline curve analysis, PVT, inflow performance,
+well and reservoir diagnostics, and machine learning for virtual flow metering.
+
+Examples
+--------
+>>> import wellcast
+>>> wellcast.__version__
+'0.1.0'
+"""
+
+from wellcast.__about__ import (
+    __author__,
+    __copyright__,
+    __email__,
+    __license__,
+    __version__,
+)
+from wellcast.exceptions import (
+    DataValidationError,
+    FitError,
+    MissingDependencyError,
+    UnitError,
+    WellcastError,
+)
+
+__all__ = [
+    "DataValidationError",
+    "FitError",
+    "MissingDependencyError",
+    "UnitError",
+    "WellcastError",
+    "__author__",
+    "__copyright__",
+    "__email__",
+    "__license__",
+    "__version__",
+]
+
+# =============================================================================
+# End of module: wellcast
+# =============================================================================
