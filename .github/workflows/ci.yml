@@ -68,7 +68,7 @@ jobs:
       - name: Tests, doctests and coverage
         run: pytest --cov=wellcast --cov-report=xml --cov-report=term
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage.xml
