@@ -25,7 +25,19 @@ Examples
 '0.1.0'
 """
 
-from wellcast import clean, datasets, dca, features, io, ipr, pvt, units
+from wellcast import (
+    clean,
+    datasets,
+    dca,
+    diagnostics,
+    features,
+    io,
+    ipr,
+    ml,
+    plotting,
+    pvt,
+    units,
+)
 from wellcast.__about__ import (
     __author__,
     __copyright__,
@@ -62,11 +74,14 @@ __all__ = [
     "convert",
     "datasets",
     "dca",
+    "diagnostics",
     "features",
     "fit_many",
     "io",
     "ipr",
     "make_synthetic_field",
+    "ml",
+    "plotting",
     "pvt",
     "qc_report",
     "read_production",

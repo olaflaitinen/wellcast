@@ -647,7 +647,8 @@ class Predictor:
         MissingDependencyError
             If ``shap`` or ``plotly`` is not installed.
         """
-        go = cast(Any, require_extra("plotly.graph_objects", "viz"))
+        from wellcast.plotting import importance_bar
+
         importance = (
             self.shap_values(df, max_samples=max_samples)
             .abs()
@@ -655,15 +656,11 @@ class Predictor:
             .sort_values(ascending=True)
             .tail(top)
         )
-        fig = go.Figure(
-            go.Bar(x=importance.to_numpy(), y=list(importance.index), orientation="h")
-        )
-        fig.update_layout(
+        return importance_bar(
+            importance,
             title=f"Feature importance for {self.target} (mean |SHAP|)",
-            xaxis_title=f"mean |SHAP value| ({self.target} units)",
-            margin={"l": 160},
+            x_title=f"mean |SHAP value| ({self.target} units)",
         )
-        return fig
 
     # -- persistence ------------------------------------------------------------
 

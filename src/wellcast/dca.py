@@ -42,14 +42,14 @@ from __future__ import annotations
 
 from collections.abc import Callable, Sequence
 from dataclasses import dataclass
-from typing import Any, Literal, cast
+from typing import Any, Literal
 
 import numpy as np
 import numpy.typing as npt
 import pandas as pd
 from scipy.optimize import curve_fit
 
-from wellcast._validation import as_float_array, check_positive, require_extra
+from wellcast._validation import as_float_array, check_positive
 from wellcast.exceptions import DataValidationError, FitError
 
 __all__ = [
@@ -834,6 +834,7 @@ class DeclineModel:
         rates: pd.Series | None = None,
         *,
         forecast_days: int = 3650,
+        econ_limit: float | None = None,
         title: str | None = None,
     ) -> Any:
         """Plot observed rates, the fitted curve and bootstrap bands.
@@ -844,6 +845,8 @@ class DeclineModel:
             Observed rates to overlay (date-indexed if the model is).
         forecast_days : int, optional
             Forecast horizon after the last observation. Default 3650.
+        econ_limit : float, optional
+            Stop the forecast at this rate and draw the limit.
         title : str, optional
             Figure title.
 
@@ -858,51 +861,11 @@ class DeclineModel:
             If plotly is not installed.
         """
         self._check_fitted()
-        go = cast(Any, require_extra("plotly.graph_objects", "viz"))
-        t = np.linspace(0.0, self.t_last_ + forecast_days, 400)
-        x: Any = (
-            self.start_ + pd.to_timedelta(t, unit="D") if self.start_ is not None else t
+        from wellcast.plotting import decline_plot
+
+        return decline_plot(
+            self, rates, forecast_days=forecast_days, econ_limit=econ_limit, title=title
         )
-        fig = go.Figure()
-        if self._samples is not None:
-            bands = self.predict_interval(t)
-            fig.add_trace(
-                go.Scatter(x=x, y=bands["p10"], name="P10", line={"width": 0})
-            )
-            fig.add_trace(
-                go.Scatter(
-                    x=x,
-                    y=bands["p90"],
-                    name="P90 to P10",
-                    fill="tonexty",
-                    line={"width": 0},
-                    fillcolor="rgba(31, 119, 180, 0.2)",
-                )
-            )
-        if rates is not None:
-            fig.add_trace(
-                go.Scatter(
-                    x=rates.index,
-                    y=rates,
-                    mode="markers",
-                    name="observed",
-                    marker={"size": 4, "color": "rgba(80, 80, 80, 0.6)"},
-                )
-            )
-        fig.add_trace(
-            go.Scatter(
-                x=x,
-                y=self.predict(t),
-                name=f"{self.model_} fit",
-                line={"color": "#1f77b4"},
-            )
-        )
-        fig.update_layout(
-            title=title or f"Arps {self.model_} decline (b = {self.b_:.2f})",
-            yaxis={"type": "log", "title": "rate"},
-            xaxis={"title": "date" if self.start_ is not None else "days"},
-        )
-        return fig
 
     def __repr__(self) -> str:
         if not self._fitted:
