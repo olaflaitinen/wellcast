@@ -599,7 +599,11 @@ class Predictor:
         approach to interpreting model predictions", NeurIPS.
         """
         self._check_fitted()
-        shap = cast(Any, require_extra("shap", "ml"))
+        with warnings.catch_warnings():
+            # shap imports tqdm.auto, which warns inside notebooks that lack
+            # ipywidgets; the notice is about progress bars only.
+            warnings.filterwarnings("ignore", message="IProgress not found")
+            shap = cast(Any, require_extra("shap", "ml"))
         x = self._matrix(df)
         if len(x) > max_samples:
             x = x.sample(max_samples, random_state=self.random_state)
