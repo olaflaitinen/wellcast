@@ -1,0 +1,24 @@
+# Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# SPDX-License-Identifier: MPL-2.0
+
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: build
+    open-pull-requests-limit: 5
+  - package-ecosystem: pip
+    directory: "/app"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: build
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci

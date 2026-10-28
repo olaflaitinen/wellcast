@@ -1,0 +1,27 @@
+# Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# SPDX-License-Identifier: MPL-2.0
+
+name: Question
+description: Ask how to use wellcast (GitHub Discussions is preferred for open-ended questions).
+labels: [question]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: wellcast version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What are you trying to do, and what have you tried?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Code
+      description: A short example of your current approach, if any.
+      render: python

@@ -1,0 +1,14 @@
+# Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# SPDX-License-Identifier: MPL-2.0
+
+blank_issues_enabled: false
+contact_links:
+  - name: Discussions
+    url: https://github.com/olaflaitinen/wellcast/discussions
+    about: Questions, ideas and engineering discussion.
+  - name: Security vulnerability
+    url: https://github.com/olaflaitinen/wellcast/security/advisories/new
+    about: Report security problems privately.
+  - name: Documentation
+    url: https://olaflaitinen.github.io/wellcast
+    about: User guide, tutorials and API reference.

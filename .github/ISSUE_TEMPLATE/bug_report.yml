@@ -1,0 +1,68 @@
+# Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# SPDX-License-Identifier: MPL-2.0
+
+name: Bug report
+description: Report something that does not work as documented.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a problem. Please check the
+        [documentation](https://olaflaitinen.github.io/wellcast) and existing
+        issues first. Security problems go to the private channel described in
+        SECURITY.md, not here.
+  - type: input
+    id: version
+    attributes:
+      label: wellcast version
+      description: Output of `wellcast --version` or `python -c "import wellcast; print(wellcast.__version__)"`.
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      placeholder: "3.12.4"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: What did you expect, and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Minimal reproducible example
+      description: >-
+        The shortest code that shows the problem. Where possible use
+        `wellcast.make_synthetic_field` instead of private data.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: traceback
+    attributes:
+      label: Error message or traceback
+      render: text
+  - type: textarea
+    id: environment
+    attributes:
+      label: Other relevant package versions
+      description: For example pandas, numpy, scikit-learn, lightgbm, plotly, streamlit.
+      render: text

@@ -1,0 +1,36 @@
+# Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# SPDX-License-Identifier: MPL-2.0
+
+name: Feature request
+description: Suggest a new correlation, model, diagnostic or improvement.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Engineering problem
+      description: What analysis or workflow is missing or hard today?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the function, method or behavior you would like.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Papers, textbooks or published examples (SPE numbers welcome) to validate against.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I would like to help implement this.
