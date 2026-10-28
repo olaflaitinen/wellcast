@@ -10,10 +10,16 @@
 <p align="center">
   <a href="https://pypi.org/project/wellcast/"><img alt="PyPI version" src="https://img.shields.io/pypi/v/wellcast?cacheSeconds=3600"></a>
   <a href="https://pypi.org/project/wellcast/"><img alt="Python versions" src="https://img.shields.io/pypi/pyversions/wellcast?cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Development status" src="https://img.shields.io/pypi/status/wellcast?cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Implementation" src="https://img.shields.io/pypi/implementation/wellcast?cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Wheel" src="https://img.shields.io/pypi/wheel/wellcast?cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Distribution format" src="https://img.shields.io/pypi/format/wellcast?cacheSeconds=3600"></a>
+  <a href="https://pypi.org/project/wellcast/"><img alt="Typed" src="https://img.shields.io/pypi/types/wellcast?cacheSeconds=3600"></a>
+  <a href="https://pypistats.org/packages/wellcast"><img alt="Monthly downloads" src="https://img.shields.io/pypi/dm/wellcast?cacheSeconds=3600"></a>
   <a href="https://github.com/olaflaitinen/wellcast/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/olaflaitinen/wellcast/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://codecov.io/gh/olaflaitinen/wellcast"><img alt="Coverage" src="https://codecov.io/gh/olaflaitinen/wellcast/branch/main/graph/badge.svg"></a>
   <a href="https://olaflaitinen.github.io/wellcast"><img alt="Docs" src="https://github.com/olaflaitinen/wellcast/actions/workflows/docs.yml/badge.svg"></a>
-  <a href="https://github.com/olaflaitinen/wellcast/blob/main/LICENSE"><img alt="License MPL-2.0" src="https://img.shields.io/badge/license-MPL--2.0-blue"></a>
+  <a href="https://github.com/olaflaitinen/wellcast/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/pypi/l/wellcast?cacheSeconds=3600"></a>
   <a href="https://pepy.tech/project/wellcast"><img alt="Downloads" src="https://static.pepy.tech/badge/wellcast/month"></a>
   <a href="https://github.com/astral-sh/ruff"><img alt="Code style: ruff" src="https://img.shields.io/badge/code%20style-ruff-261230"></a>
   <a href="https://mypy-lang.org/"><img alt="Typed: mypy" src="https://img.shields.io/badge/typed-mypy%20strict-2a6db2"></a>
