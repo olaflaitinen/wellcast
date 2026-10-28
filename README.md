@@ -189,8 +189,7 @@ wellcast app
 Six pages (Data, Explore, Predict, Decline, Diagnose, Report) cover the whole
 workflow, and **Load demo data** works with zero setup.
 
-<!-- STREAMLIT CLOUD URL PLACEHOLDER: replace the link below once the app is deployed. -->
-Live demo on Streamlit Community Cloud: **link coming soon** (`https://STREAMLIT-CLOUD-URL-PLACEHOLDER`)
+Live demo on Streamlit Community Cloud: **[wellcast.streamlit.app](https://wellcast.streamlit.app/)**
 
 ## Tutorials
 
