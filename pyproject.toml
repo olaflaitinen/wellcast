@@ -64,6 +64,7 @@ dev = [
   "ruff>=0.6",
   "mypy>=1.10",
   "pandas-stubs>=2.0",
+  "scipy-stubs>=1.14",
   "pre-commit>=3.7",
   "nbmake>=1.5",
   "build>=1.2",
