@@ -97,10 +97,20 @@ path = "src/wellcast/__about__.py"
 [tool.hatch.build.targets.wheel]
 packages = ["src/wellcast"]
 
+# Ship the Streamlit app inside the package so `wellcast app` works after a
+# plain pip install (the repository copy in app/ serves Streamlit Cloud).
+[tool.hatch.build.targets.wheel.force-include]
+"app" = "wellcast/_app"
+"assets/logo.svg" = "wellcast/_app/assets/logo.svg"
+"assets/icon.svg" = "wellcast/_app/assets/icon.svg"
+
 [tool.hatch.build.targets.sdist]
 include = [
   "/src",
   "/tests",
+  "/app",
+  "/assets",
+  "/.streamlit",
   "/LICENSE",
   "/README.md",
   "/CHANGELOG.md",
@@ -164,6 +174,10 @@ ignore = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.ruff.lint.isort]
+# The Streamlit app imports its helper module "common" from its own folder.
+known-local-folder = ["common"]
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["D"]

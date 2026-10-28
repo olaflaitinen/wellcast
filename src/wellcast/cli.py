@@ -45,7 +45,18 @@ from wellcast.dca import DeclineModel
 from wellcast.exceptions import DataValidationError, WellcastError
 from wellcast.io import read_production
 
-__all__ = ["build_parser", "find_app", "main"]
+__all__ = ["APP_THEME", "build_parser", "find_app", "main"]
+
+# Streamlit theme for ``wellcast app``. Streamlit Community Cloud reads the
+# same values from .streamlit/config.toml at the repository root; a test keeps
+# the two in sync.
+APP_THEME: dict[str, str] = {
+    "base": "light",
+    "primaryColor": "#2a78d6",
+    "backgroundColor": "#fcfcfb",
+    "secondaryBackgroundColor": "#f0efec",
+    "textColor": "#0b0b0b",
+}
 
 
 # -----------------------------------------------------------------------------
@@ -161,6 +172,8 @@ def _cmd_app(args: argparse.Namespace) -> int:
         "--server.port",
         str(args.port),
     ]
+    for key, value in APP_THEME.items():
+        command += [f"--theme.{key}", value]
     if args.headless:
         command += ["--server.headless", "true"]
     return subprocess.run(command, check=False).returncode

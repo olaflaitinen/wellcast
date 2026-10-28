@@ -175,7 +175,19 @@ def test_app_launches_streamlit(
     command = calls[0]
     assert command[1:4] == ["-m", "streamlit", "run"]
     assert command[4] == str(script)
-    assert command[-4:] == ["--server.port", "8600", "--server.headless", "true"]
+    assert command[5:7] == ["--server.port", "8600"]
+    assert command[-2:] == ["--server.headless", "true"]
+    assert "--theme.primaryColor" in command
+
+
+def test_app_theme_matches_streamlit_config() -> None:
+    # Streamlit Community Cloud reads .streamlit/config.toml; `wellcast app`
+    # passes cli.APP_THEME as flags. Both must define the same theme.
+    tomllib = pytest.importorskip("tomllib")
+    config = Path(__file__).resolve().parent.parent / ".streamlit" / "config.toml"
+    with config.open("rb") as handle:
+        theme = tomllib.load(handle)["theme"]
+    assert theme == cli.APP_THEME
 
 
 def test_app_without_streamlit(

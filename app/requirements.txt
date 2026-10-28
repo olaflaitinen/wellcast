@@ -1,0 +1,7 @@
+# Copyright (c) 2026 Olaf Yunus Laitinen Imanov
+# SPDX-License-Identifier: MPL-2.0
+#
+# Dependencies for Streamlit Community Cloud (entry point: app/streamlit_app.py).
+# Installs wellcast with every extra from the main branch; after the 0.1.0
+# release this can be pinned to the PyPI package instead: wellcast[all]==0.1.0
+wellcast[all] @ git+https://github.com/olaflaitinen/wellcast.git@main
