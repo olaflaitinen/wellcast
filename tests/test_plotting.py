@@ -142,6 +142,18 @@ def test_chan_hall_and_anomaly_plots(production: pd.DataFrame) -> None:
         pl.anomaly_overlay(production, anomalies, "nope")
 
 
+def test_prediction_interval_plot() -> None:
+    idx = pd.date_range("2024-01-01", periods=4, freq="D")
+    band = pd.DataFrame(
+        {"lower": [1.0] * 4, "prediction": [2.0] * 4, "upper": [3.0] * 4}, index=idx
+    )
+    fig = pl.prediction_interval_plot(pd.Series([2.0] * 4, index=idx), band, title="t")
+    assert fig.data[1].fill == "tonexty"
+    assert fig.layout.title.text == "t"
+    with pytest.raises(DataValidationError):
+        pl.prediction_interval_plot(pd.Series([1.0]), pd.DataFrame({"lower": [1.0]}))
+
+
 def test_importance_bar() -> None:
     fig = pl.importance_bar(pd.Series({"a": 1.0, "b": 2.0}), title="t", x_title="x")
     assert fig.data[0].orientation == "h"

@@ -53,6 +53,7 @@ __all__ = [
     "importance_bar",
     "ipr_plot",
     "predicted_vs_actual",
+    "prediction_interval_plot",
     "production_history",
     "register_theme",
 ]
@@ -564,6 +565,83 @@ def predicted_vs_actual(
             mode="lines",
             name="1:1",
             line={"color": _TEXT, "dash": "dash", "width": 1.5},
+        )
+    )
+    return fig
+
+
+def prediction_interval_plot(
+    actual: pd.Series,
+    interval: pd.DataFrame,
+    *,
+    title: str = "Prediction with interval",
+) -> Any:
+    """Observed values against predictions with a shaded interval.
+
+    Parameters
+    ----------
+    actual : pandas.Series
+        Observed values, indexed like ``interval`` (typically by date).
+    interval : pandas.DataFrame
+        Output of :meth:`wellcast.ml.Predictor.predict_interval`, with
+        columns ``lower``, ``prediction`` and ``upper``.
+    title : str, optional
+        Figure title.
+
+    Returns
+    -------
+    plotly.graph_objects.Figure
+        Time-series figure with the interval as a band.
+
+    Examples
+    --------
+    >>> import pandas as pd
+    >>> idx = pd.date_range("2024-01-01", periods=3, freq="D")
+    >>> band = pd.DataFrame(
+    ...     {
+    ...         "lower": [1.0, 2.0, 3.0],
+    ...         "prediction": [2.0, 3.0, 4.0],
+    ...         "upper": [3.0, 4.0, 5.0],
+    ...     },
+    ...     index=idx,
+    ... )
+    >>> fig = prediction_interval_plot(pd.Series([2.1, 2.9, 4.2], index=idx), band)
+    >>> [t.name for t in fig.data]
+    ['upper', 'interval', 'prediction', 'actual']
+    """
+    go = _go()
+    require_columns(interval, ["lower", "prediction", "upper"])
+    fig = _figure(title=title)
+    x = interval.index
+    fig.add_trace(
+        go.Scatter(
+            x=x, y=interval["upper"], name="upper", line={"width": 0}, showlegend=False
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=x,
+            y=interval["lower"],
+            name="interval",
+            fill="tonexty",
+            line={"width": 0},
+            fillcolor="rgba(42, 120, 214, 0.18)",
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=x,
+            y=interval["prediction"],
+            name="prediction",
+            line={"color": SERIES_COLORS[0]},
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=actual.index,
+            y=actual,
+            name="actual",
+            line={"color": SERIES_COLORS[1], "dash": "dot"},
         )
     )
     return fig
